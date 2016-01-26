@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    SQLiteDatabase db;
+    SQLiteDatabase baseDatos;
 
 
     @Override
@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    /*public void abrirBaseDatos(){
+    public void abrirBaseDatos(){
         try
         {
 
-            /*baseDatos = openOrCreateDatabase("DINERO", MODE_WORLD_WRITEABLE, null);
+            baseDatos = openOrCreateDatabase("DINERO", MODE_WORLD_WRITEABLE, null);
             baseDatos.execSQL(crearTablaDinero());
             Toast.makeText(getApplicationContext(),"SI",Toast.LENGTH_SHORT).show();
         }
@@ -44,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),c.getInt(0),Toast.LENGTH_SHORT).show();
     }*/
     public void crear() {
-        /*
+
         String tabla="CREATE TABLE IF NOT EXISTS DINERO(" +
                 "INGRESOS INTEGER," +
                 "GASTOS INTEGER)";
-        db.execSQL(tabla);
-        db.execSQL("INSERT INTO DINERO (INGRESOS) " +
+        baseDatos.execSQL(tabla);
+        baseDatos.execSQL("INSERT INTO DINERO (INGRESOS) " +
                 "VALUES (300)");
-        db.close();*/
+        baseDatos.close();
     }
     public String getIngreso(){
         String b="";
         crear();
-        Cursor c = db.rawQuery("SELECT INGRESOS FROM DINERO",null);
+        Cursor c = baseDatos.rawQuery("SELECT INGRESOS FROM DINERO",null);
         try{
             if(c.moveToFirst()){
                 int i=1;
